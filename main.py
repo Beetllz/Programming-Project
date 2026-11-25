@@ -1,6 +1,7 @@
 import os
 import pygame # pyright: ignore[reportMissingImports]
-from classes import * #importing classes file
+import sys
+import OOP
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
 pygame.init()
@@ -23,6 +24,9 @@ psettingsmain = pygame.image.load("images/settingspressedmain.png")
 quitmain = pygame.image.load("images/quitgamemain.png")
 pquitmain = pygame.image.load("images/quitpressedmain.png")
 
+#creating button objects
+newgame = Button(700, 400, newmain)
+
 #game loop begins
 running = True
 while running:
@@ -31,5 +35,3 @@ while running:
             running = False
     game_display = screen.blit(bg, (0, 0))
     pygame.display.update()
-
-pygame.quit()

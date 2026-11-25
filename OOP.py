@@ -1,6 +1,7 @@
 import os
 import pygame
-from main import * #import main python file
+import sys
+from main import *
 
 #button class
 class Button():
