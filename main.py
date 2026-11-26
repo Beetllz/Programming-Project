@@ -1,6 +1,6 @@
 import os
 import pygame # pyright: ignore[reportMissingImports]
-from button import Button
+from button import *
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
 pygame.init()
@@ -8,7 +8,7 @@ pygame.init()
 #create game window
 pygame.display.set_caption("Hospital Point and Click Game")
 screen = pygame.display.set_mode((1440,810))
-
+  
 #importing images
 #backgrounds
 bg = pygame.image.load("images/bg.png")
