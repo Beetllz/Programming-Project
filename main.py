@@ -1,7 +1,6 @@
 import os
 import pygame # pyright: ignore[reportMissingImports]
-import sys
-import OOP
+from myclasses import Button
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
 pygame.init()
