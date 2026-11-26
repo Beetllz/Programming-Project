@@ -1,6 +1,5 @@
 import os
 import pygame # pyright: ignore[reportMissingImports]
-import time
 from button import Button
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
