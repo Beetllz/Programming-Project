@@ -1,6 +1,6 @@
 import os
 import pygame # pyright: ignore[reportMissingImports]
-import button
+from button import Button
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
 pygame.init()
@@ -30,36 +30,6 @@ quitmain = pygame.image.load("images/quitgamemain.png")
 quitmain = pygame.transform.scale(quitmain, (450, 75))
 pquitmain = pygame.image.load("images/quitpressedmain.png")
 pquitmain = pygame.transform.scale(pquitmain, (450, 75))
-
-#button class, included in main.py for now until I can move it to a seperate file to import it
-class Button():
-    def __init__(self, x, y, image, altimage):
-        self.image = image
-        self.altimage = altimage
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (x, y)
-        self.clicked = False
-
-    def ispressed(self):
-        self.image = self.altimage
-    
-    #drawing the button on the screen
-    def draw(self, surface):
-        action = False
-        #checking to see if the mouse is clicked and then changing the button image to the pressed version
-        pos = pygame.mouse.get_pos()
-        if self.rect.collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-                self.clicked = True
-                self.ispressed()
-                action = True
-
-        if pygame.mouse.get_pressed()[0] == 0:
-            self.clicked = False
-
-        surface.blit(self.image, (self.rect.x, self.rect.y))
-
-        return action
     
 #creating button objects
 mnew = Button(750, 300, newmain, pnewmain)
