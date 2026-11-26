@@ -1,5 +1,6 @@
 import os
 import pygame # pyright: ignore[reportMissingImports]
+import time
 from button import Button
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
@@ -37,22 +38,55 @@ mload = Button(750, 400, loadmain, ploadmain)
 msettings = Button(750, 500, settingsmain, psettingsmain)
 mquit = Button(750, 600, quitmain, pquitmain)
 
-#game loop begins
-running = True
-while running:
+def room1(): #game environment
+    pygame.display.set_caption("Game Environment")
 
-    game_display = screen.blit(bg, (0, 0))
-    if mnew.draw(screen):
-        print("New Game button pressed")
-    if mload.draw(screen):
-        print("Load Game button pressed")
-    if msettings.draw(screen):
-        print("Settings button pressed")
-    if mquit.draw(screen):
-        running = False
+    running = True
+    while running:
 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        mousepos = pygame.mouse.get_pos()
+        screen.fill("black") #when i have finished drawing the background i will blit it here instead
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+
+        pygame.display.update()
+
+def settings():
+    pygame.display.set_caption("Settings Menu")
+
+    running = True
+    while running:
+        
+        mousepos = pygame.mouse.get_pos()
+        screen.blit(bg, (0, 0))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        pygame.display.update()
+
+def main_menu(): #main menu function
+    running = True
+    while running:
+
+        game_display = screen.blit(bg, (0, 0))
+        if mnew.draw(screen):
+            print("New Game button pressed")
+            room1()
+        if mload.draw(screen):
+            print("Load Game button pressed")
+        if msettings.draw(screen):
+            settings()
+        if mquit.draw(screen):
             running = False
 
-    pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        pygame.display.update()
+
+main_menu()
