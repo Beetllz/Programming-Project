@@ -3,7 +3,7 @@ import pygame
 #button class
 class Button():
     def __init__(self, x, y, image, altimage):
-        #assigninh attri
+        #assigning attributes
         self.image = image
         self.temp = image
         self.altimage = altimage
