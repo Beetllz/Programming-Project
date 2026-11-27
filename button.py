@@ -35,7 +35,7 @@ class Button():
 
         return action #returns True when a button has been clicked
 
-#creating a second button class, where the draw method instead changed
+#creating a second button class, where the draw method instead changes
 #the image of the button when it is clicked not when it is hovered over.
 class aButton(Button):
     
@@ -58,4 +58,6 @@ class aButton(Button):
 
         return action
     
+#creating a third button class for the cells in my inventory menu,
+#as they need to have different attributes and methods.
 #class Invbutton(Button):
