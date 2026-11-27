@@ -64,7 +64,6 @@ pquitmain = pygame.transform.scale(pquitmain, (450, 75))
 #settings menu buttons
 audio = pygame.image.load("images/audio.png")
 audio = pygame.transform.scale(audio, (1150, 150))
-saudio = pygame.image.load("images/noaudio.png")
 #pause menu buttons
 resume = pygame.image.load("images/resume.png")
 resume = pygame.transform.scale(resume, (350, 65))
@@ -100,7 +99,7 @@ mload = Button(750, 400, loadmain, ploadmain)
 msettings = Button(750, 500, settingsmain, psettingsmain)
 mquit = Button(750, 600, quitmain, pquitmain)
 #settings menu buttons
-audio1 = aButton(10, 10, saudio, saudio)
+
 #pause menu buttons
 paresume = Button(570, 300, resume, presume)
 pasave = Button(570, 375, savedata, psavedata)
