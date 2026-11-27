@@ -1,7 +1,7 @@
 import os
 import pygame # pyright: ignore[reportMissingImports]
 from button import *
-from sprite import *
+from cursor import *
 
 os.environ["SDL_VIDEO_CENTERED"] = "1"
 pygame.init()
@@ -84,8 +84,14 @@ pquitpause = pygame.image.load("images/quitgamepressedpause.png")
 pquitpause = pygame.transform.scale(pquitpause, (350, 65))
 #inventory images
 iinventory = pygame.image.load("images/inventory.png")
+iinventory = pygame.transform.scale(iinventory, (1000, 540))
 iback = pygame.image.load("images/iback.png")
-iback = pygame.transform.scale(iback, (140, 110))
+iback = pygame.transform.scale(iback, (120, 80))
+#inventory sprites
+#cursor images
+
+#creating cursor objects
+c = Cursor(iback)
 
 #creating button objects
 #main menu buttons
@@ -101,10 +107,7 @@ pasave = Button(570, 375, savedata, psavedata)
 pasettings = Button(570, 450, settingspause, psettingspause)
 paquit = Button(570, 525, quitpause, pquitpause)
 #inventory menu buttons
-iback = Button(100, 700, iback, iback)
-
-#def changeaudio(level):
-    #for i in range(level):
+iback = Button(1120, 150, iback, iback)
 
 def draw_player():
     pygame.draw.rect(screen, "yellow", (playerx, playery, 100, 100), 0)
@@ -112,13 +115,18 @@ def draw_player():
 def inventory():
     pygame.display.set_caption("Inventory")
     screen.blit(transp, (0,0))
+
     running = True
     while running:
 
-        screen.blit(iinventory, (100, 200))
+        pygame.mouse.set_visible(0)
+        screen.blit(iinventory, (240, 150))
 
         if iback.draw(screen):
             running = False
+
+        c.draw()
+        c.update()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -129,8 +137,11 @@ def inventory():
 def pause(): #in game pause menu
     pygame.display.set_caption("Paused")
     screen.blit(transp, (0,0))
+
     running = True
     while running:
+
+        pygame.mouse.set_visible(0)
 
         if paresume.draw(screen):
             running = False
@@ -141,6 +152,9 @@ def pause(): #in game pause menu
         if paquit.draw(screen):
             pygame.quit()
         
+        c.draw()
+        c.update()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -152,6 +166,8 @@ def play(): #game environment
 
     running = True
     while running:
+
+        pygame.mouse.set_visible(0)
         timer.tick(fps)
         mousepos = pygame.mouse.get_pos()
         global playerx
@@ -161,6 +177,8 @@ def play(): #game environment
         screen.fill("white") #when i have finished drawing the background i will blit it here instead
 
         draw_player()
+        c.draw()
+        c.update()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -189,6 +207,7 @@ def play(): #game environment
                     ydirection = 0
         playerx += playerspeed * xdirection
         playery += playerspeed * ydirection
+
         pygame.display.update()
 
 def settings():
@@ -197,8 +216,12 @@ def settings():
     running = True
     while running:
         
+        pygame.mouse.set_visible(0)
         game_display = screen.blit(bg, (0, 0))
         screen.blit(audio, (146, 250))
+
+        c.draw()
+        c.update()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -210,6 +233,7 @@ def main_menu(): #main menu function
     running = True
     while running:
 
+        pygame.mouse.set_visible(0)
         game_display = screen.blit(bg, (0, 0))
         if mnew.draw(screen):
             play()
@@ -219,6 +243,9 @@ def main_menu(): #main menu function
             settings()
         if mquit.draw(screen):
             running = False
+
+        c.draw()
+        c.update()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
