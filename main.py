@@ -13,7 +13,7 @@ screen = pygame.display.set_mode((1440,810))
 #backgrounds
 bg = pygame.image.load("images/bg.png")
 bg = pygame.transform.scale(bg, (1440,810))
-#buttons
+#main menu buttons
 newmain = pygame.image.load("images/newgamemain.png")
 newmain = pygame.transform.scale(newmain, (450, 75))
 pnewmain = pygame.image.load("images/newpressedmain.png")
@@ -30,12 +30,23 @@ quitmain = pygame.image.load("images/quitgamemain.png")
 quitmain = pygame.transform.scale(quitmain, (450, 75))
 pquitmain = pygame.image.load("images/quitpressedmain.png")
 pquitmain = pygame.transform.scale(pquitmain, (450, 75))
-    
+#settings menu buttons
+audio = pygame.image.load("images/audio.png")
+audio = pygame.transform.scale(audio, (1150, 150))
+saudio = pygame.image.load("images/noaudio.png")
+
 #creating button objects
+#main menu buttons
 mnew = Button(750, 300, newmain, pnewmain)
 mload = Button(750, 400, loadmain, ploadmain)
 msettings = Button(750, 500, settingsmain, psettingsmain)
 mquit = Button(750, 600, quitmain, pquitmain)
+#settings menu buttons
+audio1 = aButton(10, 10, saudio)
+
+
+#def changeaudio(level):
+    #for i in range(level):
 
 def room1(): #game environment
     pygame.display.set_caption("Game Environment")
@@ -58,8 +69,8 @@ def settings():
     running = True
     while running:
         
-        mousepos = pygame.mouse.get_pos()
-        screen.blit(bg, (0, 0))
+        game_display = screen.blit(bg, (0, 0))
+        screen.blit(audio, (146, 250))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -73,7 +84,6 @@ def main_menu(): #main menu function
 
         game_display = screen.blit(bg, (0, 0))
         if mnew.draw(screen):
-            print("New Game button pressed")
             room1()
         if mload.draw(screen):
             print("Load Game button pressed")
